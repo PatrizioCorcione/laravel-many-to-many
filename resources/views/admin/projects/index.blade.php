@@ -30,6 +30,9 @@
           <th scope="col">
             Github
           </th>
+          <th scope="col">
+            Tecnologie
+          </th>
           <th class="text-end " scope="col">Azioni</th>
         </tr>
       </thead>
@@ -54,6 +57,13 @@
                 <a target="_blanck" href="https://github.com/PatrizioCorcione/laravel-auth">
                   {{ $item->github }}
                 </a>
+              </td>
+              <td>
+                @forelse ($item->technologies as $tech)
+                  <span class="badge bg-primary">{{ $tech->technologies }} </span>
+                @empty
+                  <p class="badge bg-danger ">Nessuna tecnologia usata</p>
+                @endforelse
               </td>
             </form>
             <td class="d-flex flex-row-reverse ">
