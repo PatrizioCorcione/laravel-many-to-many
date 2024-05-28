@@ -1,0 +1,25 @@
+nav{
+    height: 50px;
+}
+.aside{
+    width: 200px;
+    height: calc(100vh - 50px) !important;
+}
+.cassafrumbolo{
+    height: calc(100vh - 50px) !important;
+}
+.table{
+    td{
+        font-size: 0.8rem;
+    }
+    input{
+        border: none;
+        cursor: pointer;
+    }
+}
+.index-btn{
+    padding: 2px 7px !important;
+}
+.t-area-he{
+    height: 115px !important;
+}
