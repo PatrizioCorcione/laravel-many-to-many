@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Functions\Helper;
+use App\Models\Technology;
 use App\Models\Type;
 use Illuminate\Support\Facades\Storage;
 
@@ -52,7 +53,8 @@ class ProjectController extends Controller
         $route =  route('admin.project.store');
         $method = 'POST';
         $project = null;
-        return view('admin.projects.create_edit', compact('route', 'method', 'project', 'types'));
+        $technologies = Technology::all();
+        return view('admin.projects.create_edit', compact('route', 'method', 'project', 'types', 'technologies'));
     }
 
     /**
@@ -77,6 +79,7 @@ class ProjectController extends Controller
                 'thumb.image' => 'Il file deve essere un immagine',
             ]
         );
+        $valData = $request->all();
 
         $new_project = new Project();
         $valData['slug'] = Helper::makeSlug($valData['title'], new Project());
@@ -88,9 +91,11 @@ class ProjectController extends Controller
 
         $new_project->fill($valData);
         $new_project->save();
+        if (array_key_exists('technologies', $valData)) {
+            $new_project->technologies()->sync($valData['technologies']);
+        }
 
-        return redirect()->route('admin.project.show
-        ', $new_project);
+        return redirect()->route('admin.project.show', $new_project);
     }
 
     /**
@@ -109,7 +114,8 @@ class ProjectController extends Controller
         $types = Type::all();
         $route =  route('admin.project.update', $project);
         $method = 'PUT';
-        return view('admin.projects.create_edit', compact('project', 'route', 'method', 'types'));
+        $technologies = Technology::all();
+        return view('admin.projects.create_edit', compact('project', 'route', 'method', 'types', 'technologies'));
     }
 
     /**
@@ -134,6 +140,7 @@ class ProjectController extends Controller
                 'thumb.image' => 'Il file deve essere un immagine',
             ]
         );
+        $valData = $request->all();
         if ($valData['title'] === $project->title) {
             $valData['slug'] = $project->slug;
         } else {
@@ -144,6 +151,12 @@ class ProjectController extends Controller
             $valData['thumb'] = $image;
         }
         $project->update($valData);
+
+        if (array_key_exists('technologies', $valData)) {
+            $project->technologies()->sync($valData['technologies']);
+        } else {
+            $project->technologies()->detach();
+        }
         return redirect()->route('admin.project.show', $project)->with('success', 'Progetto aggiornato con successo.');
     }
     /**

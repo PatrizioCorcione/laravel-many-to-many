@@ -64,7 +64,19 @@
         @error('thumb')
           <small class="text-danger d-block mt-1">{{ $message }}</small>
         @enderror
+        <div class="btn-group my-3" role="group" aria-label="Basic checkbox toggle button group">
+
+          @foreach ($technologies as $item)
+            <input name="technologies[]" type="checkbox" class="btn-check" id="technology_{{ $item->id }}"
+              value="{{ $item->id }}" autocomplete="off" @if (($errors->any() && in_array($item->id, old('technologies', []))) || $project?->technologies->contains($item)) checked @endif>
+
+            <label class="btn btn-outline-primary"
+              for="technology_{{ $item->id }}">{{ $item->technologies }}</label>
+          @endforeach
+
+        </div>
       </div>
+
       <button type="submit" class="btn btn-primary my-3">Invia</button>
     </form>
   </div>

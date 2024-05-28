@@ -6,6 +6,7 @@
         <img class="w-75" src="{{ asset('storage/' . $project->thumb) }}" alt="">
       </div>
       <div class="my-3">
+        <h2>{{ $project->title }}</h2>
         @forelse ($project->technologies as $item)
           <span class="badge bg-primary ">{{ $item->technologies }} </span>
         @empty
