@@ -89,7 +89,8 @@ class ProjectController extends Controller
         $new_project->fill($valData);
         $new_project->save();
 
-        return redirect()->route('admin.project.index', $new_project);
+        return redirect()->route('admin.project.show
+        ', $new_project);
     }
 
     /**
