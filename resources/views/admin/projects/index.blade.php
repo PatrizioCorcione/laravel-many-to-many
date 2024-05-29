@@ -14,17 +14,17 @@
       </div>
     @endif
 
-    <table class="table">
+    <table class="table table-dark">
       <thead>
         <tr>
-          <th scope="col"><a
+          <th scope="col"><a class="text-decoration-none"
               href="{{ route('admin.orderby', ['direction' => $direction, 'column' => 'id', 'toSearch' => request('toSearch')]) }}">ID</a>
           </th>
-          <th scope="col"><a
+          <th scope="col"><a class="text-decoration-none"
               href="{{ route('admin.orderby', ['direction' => $direction, 'column' => 'title', 'toSearch' => request('toSearch')]) }}">Titolo</a>
           </th>
 
-          <th class=" " scope="col"><a
+          <th scope="col"><a class="text-decoration-none"
               href="{{ route('admin.orderby', ['direction' => $direction, 'column' => 'type_id', 'toSearch' => request('toSearch')]) }}">Tipi</a>
           </th>
           <th scope="col">
@@ -62,7 +62,7 @@
                 @forelse ($item->technologies as $tech)
                   <span class="badge bg-primary">{{ $tech->technologies }} </span>
                 @empty
-                  <p class="badge bg-danger ">Nessuna tecnologia usata</p>
+                  <p class="badge bg-danger m-0">Nessuna tecnologia usata</p>
                 @endforelse
               </td>
             </form>
@@ -71,12 +71,13 @@
                 onsubmit="return confirm('Sei sicuro di voler eliminare questo progetto ?')">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="btn btn-danger  index-btn"><i class="fa-solid fa-circle-xmark"></i></button>
+                <button type="submit" class="btn btn-outline-danger  index-btn"><i
+                    class="fa-solid fa-circle-xmark"></i></button>
               </form>
-              <a href="{{ route('admin.project.edit', $item) }}" class="btn btn-warning index-btn text-white mx-2">
-                <i class="fa-solid fa-pen-nib text-black "></i></a>
-              <a href="{{ route('admin.project.show', $item) }}" class="btn btn-primary index-btn text-white">
-                <i class="fa-solid fa-eye text-black "></i></a>
+              <a href="{{ route('admin.project.edit', $item) }}" class="btn btn-outline-warning index-btn mx-2">
+                <i class="fa-solid fa-pen-nib "></i></a>
+              <a href="{{ route('admin.project.show', $item) }}" class="btn btn-outline-primary index-btn">
+                <i class="fa-solid fa-eye "></i></a>
               </a>
             </td>
           </tr>

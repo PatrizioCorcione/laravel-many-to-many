@@ -6,8 +6,8 @@
         <img class="w-75" src="{{ asset('storage/' . $project->thumb) }}" alt="">
       </div>
       <div class="my-3 col-6">
-        <h2>{{ $project->title }}</h2>
-        <p>{{ $project->description }}</p>
+        <h2 class="text-secondary">{{ $project->title }}</h2>
+        <p class="text-secondary">{{ $project->description }}</p>
       </div>
     </div>
   </div>

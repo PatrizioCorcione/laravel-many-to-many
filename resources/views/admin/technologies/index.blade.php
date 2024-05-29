@@ -26,12 +26,13 @@
       <div class="col-6">
 
 
-        <form class="d-flex" action="{{ route('admin.technologies.store') }}" method="POST">
+        <form class="d-flex py-3" action="{{ route('admin.technologies.store') }}" method="POST">
           @csrf
-          <input placeholder="Tecnologia" type="text" name="technologies" id="">
+          <input class=" border-primary text-white bg-black rounded-2 px-2" placeholder="Tecnologia" type="text"
+            name="technologies" id="">
           <button class="btn btn-outline-primary mx-3" type="submit">Invia</button>
         </form>
-        <table class="table">
+        <table class="table table-dark tech-table ">
           <thead>
             <tr>
               <th scope="col">Tecnologia</th>
@@ -47,19 +48,19 @@
                   @method('PUT')
 
                   <td>
-                    <input class="index-btn" placeholder="Tecnologia" type="text" value="{{ $item->technologies }}"
-                      name="technologies">
+                    <input class="index-btn border-primary text-white bg-black rounded-2 px-2" placeholder="Tecnologia"
+                      type="text" value="{{ $item->technologies }}" name="technologies">
                   </td>
                 </form>
                 <td>
-                  <button class="btn btn-warning index-btn" onclick="submitForm('form-tech-{{ $item->id }}')">
-                    <i class="fa-solid fa-pen-nib text-black "></i></a>
+                  <button class="btn btn-outline-warning index-btn" onclick="submitForm('form-tech-{{ $item->id }}')">
+                    <i class="fa-solid fa-pen-nib"></i></a>
                   </button>
                   <form class="d-inline-block" action="{{ route('admin.technologies.destroy', $item->id) }}"
                     method="POST" onsubmit="return confirm('Sei sicuro di voler eliminare questo progetto ?')">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-danger  index-btn"><i
+                    <button type="submit" class="btn btn-outline-danger  index-btn"><i
                         class="fa-solid fa-circle-xmark"></i></button>
                   </form>
                 </td>
@@ -79,12 +80,13 @@
       </script>
       <div class="col-6">
 
-        <form class="d-flex" action="{{ route('admin.types.store') }}" method="POST">
+        <form class="d-flex py-3" action="{{ route('admin.types.store') }}" method="POST">
           @csrf
-          <input placeholder="Tipo" type="text" name="type" id="">
+          <input placeholder="Tipo" type="text" name="type" id=""
+            class=" border-primary text-white bg-black rounded-2 px-2">
           <button class="btn btn-outline-primary mx-3" type="submit">Invia</button>
         </form>
-        <table class="table">
+        <table class="table table-dark tech-table">
           <thead>
             <tr>
               <th scope="col">Tipi</th>
@@ -100,18 +102,20 @@
                   @method('PUT')
 
                   <td>
-                    <input placeholder="Tipo" type="text" value="{{ $item->type }}" name="type">
+                    <input class="border-primary text-white bg-black rounded-2 px-2" placeholder="Tipo" type="text"
+                      value="{{ $item->type }}" name="type">
                   </td>
                 </form>
                 <td>
-                  <button class="btn btn-warning index-btn" onclick="submitForm('form-tech-{{ $item->id }}')">
-                    <i class="fa-solid fa-pen-nib text-black "></i></a>
+                  <button class="btn btn-outline-warning index-btn"
+                    onclick="submitForm('form-tech-{{ $item->id }}')">
+                    <i class="fa-solid fa-pen-nib"></i></a>
                   </button>
                   <form class="d-inline-block" action="{{ route('admin.types.destroy', $item->id) }}" method="POST"
                     onsubmit="return confirm('Sei sicuro di voler eliminare questo tipo ?')">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-danger  index-btn"><i
+                    <button type="submit" class="btn btn-outline-danger  index-btn"><i
                         class="fa-solid fa-circle-xmark"></i></button>
                   </form>
                 </td>
